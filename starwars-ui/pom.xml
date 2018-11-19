@@ -4,25 +4,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>demo.istio</groupId>
-    <artifactId>starwars</artifactId>
+    <artifactId>starwars-ui</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>starwars</name>
-    <description>Istio Star Wars demo</description>
+    <name>starwars-ui</name>
+    <description>UI for Star Wars Istio example</description>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>demo.istio</groupId>
+        <artifactId>starwars</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
-
-    <modules>
-        <module>starwars-quotes</module>
-        <module>starwars-deathstar</module>
-        <module>starwars-ui</module>
-    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,14 +27,9 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
