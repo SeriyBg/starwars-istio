@@ -14,8 +14,8 @@ public class QuoteService {
     }
 
     public Quote randomQuote() {
-        String character = quotesConfig.character();
-        String quote = quotesConfig.quote(character);
+        var character = quotesConfig.character();
+        var quote = quotesConfig.quote(character);
         return new Quote(character, quote);
     }
 }

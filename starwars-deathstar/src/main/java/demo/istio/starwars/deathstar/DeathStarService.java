@@ -1,6 +1,5 @@
 package demo.istio.starwars.deathstar;
 
-import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class DeathStarService {
     }
 
     public Planet destroyRandomPlanet() {
-        List<Planet> planets = this.planets.getPlanets();
+        var planets = this.planets.getPlanets();
         return planets.get(new Random(System.currentTimeMillis()).nextInt(planets.size()));
     }
 }

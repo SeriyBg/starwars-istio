@@ -7,12 +7,10 @@ import java.util.Map;
 import java.util.Random;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties
-@ConfigurationProperties
+@ConfigurationProperties(prefix = "data")
 public class QuotesConfig {
 
     @Getter
@@ -26,8 +24,8 @@ public class QuotesConfig {
     }
 
     public String quote(String character) {
-        String characterFormatted = character.toLowerCase().replaceAll(" ", "-");
-        List<String> characterQuotes = quotes.get(characterFormatted);
+        var characterFormatted = character.toLowerCase().replaceAll(" ", "-");
+        var characterQuotes = quotes.get(characterFormatted);
         return characterQuotes.get(new Random().nextInt(characterQuotes.size()));
     }
 }

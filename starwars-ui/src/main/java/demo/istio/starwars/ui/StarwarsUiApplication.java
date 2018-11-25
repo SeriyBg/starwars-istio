@@ -19,7 +19,7 @@ public class StarwarsUiApplication {
     }
 
     @Bean
-    QuoteService weatherService(RestTemplate restTemplate,
+    QuoteService quoteService(RestTemplate restTemplate,
                                   @Value("${backend.quote-service.url}") String endpoint) {
         return new QuoteService(restTemplate,  endpoint);
     }

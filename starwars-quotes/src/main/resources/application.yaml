@@ -1,52 +1,55 @@
-characters:
-  - 'Yoda'
-  - 'Obi Wan Kenobi'
-  - 'Dath Vader'
-  - 'Palpatine'
-  - 'Chewbacca'
-  - 'c3p0'
-  - 'Han Solo'
-quotes:
-  yoda:
-    - 'Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.'
-    - 'Always pass on what you have learned.'
-    - 'Powerful you have become, the dark side I sense in you.'
-    - 'You must unlearn what you have learned.'
-    - 'The fear of loss is a path to the Dark Side.'
-    - 'Do or do not. There is no try.'
-  obi-wan-kenobi:
-    - 'Be mindful of your thoughts, Anakin, they betray you.'
-    - 'So uncivilized.'
-    - 'Only a Sith deals in absolutes.'
-    - 'Use the Force, Luke.'
-    - 'I felt a great disturbance in the Force, as if millions of voices suddenly cried out in terror, and were suddenly silenced.'
-  dath-vader:
-    - 'I am altering the deal. Pray, I don’t alter it any further.'
-    - 'I find your lack of faith disturbing.'
-    - 'Give yourself to the Dark Side.'
-    - 'No, I am your father!'
-    - 'Impressive. Most impressive. Obi-Wan has taught you well.'
-    - 'The Force is strong with this one.'
-  palpatine:
-    - 'Everything is proceeding as I have foreseen.'
-    - 'My mentor taught me everything about the Force, even the nature of the dark side.'
-    - 'Power! Unlimited power!'
-    - 'Now, young Skywalker, you will die.'
-  chewbacca:
-    - 'RRWWWGG.'
-    - 'GGWWWRGHH.'
-    - 'RAWRGWAWGGR.'
-    - 'RRRAARRWHHGWWR.'
-    - 'AAARARRRGWWWH.'
-  c3p0:
-    - 'I suggest a new strategy, Artoo: let the Wookie win.'
-    - 'R2 says the chances of survival are 725... to one.'
-    - 'We are doomed.'
-    - 'Die Jedi Dogs! Oh what did I say?'
-    - 'R2D2! You know better than to trust a strange computer!'
-  han-solo:
-    - 'Never tell me the odds!'
-    - 'It’s the ship that made the Kessel run in less than twelve parsecs.'
-    - 'Chewie, we’re home.'
-    - 'It is not wise to upset a Wookiee.'
-    - 'You know, sometimes I amaze even myself.'
+server:
+  port: 8081
+data:
+  characters:
+    - 'Yoda'
+    - 'Obi Wan Kenobi'
+    - 'Dath Vader'
+    - 'Palpatine'
+    - 'Chewbacca'
+    - 'c3p0'
+    - 'Han Solo'
+  quotes:
+    yoda:
+      - 'Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.'
+      - 'Always pass on what you have learned.'
+      - 'Powerful you have become, the dark side I sense in you.'
+      - 'You must unlearn what you have learned.'
+      - 'The fear of loss is a path to the Dark Side.'
+      - 'Do or do not. There is no try.'
+    obi-wan-kenobi:
+      - 'Be mindful of your thoughts, Anakin, they betray you.'
+      - 'So uncivilized.'
+      - 'Only a Sith deals in absolutes.'
+      - 'Use the Force, Luke.'
+      - 'I felt a great disturbance in the Force, as if millions of voices suddenly cried out in terror, and were suddenly silenced.'
+    dath-vader:
+      - 'I am altering the deal. Pray, I don’t alter it any further.'
+      - 'I find your lack of faith disturbing.'
+      - 'Give yourself to the Dark Side.'
+      - 'No, I am your father!'
+      - 'Impressive. Most impressive. Obi-Wan has taught you well.'
+      - 'The Force is strong with this one.'
+    palpatine:
+      - 'Everything is proceeding as I have foreseen.'
+      - 'My mentor taught me everything about the Force, even the nature of the dark side.'
+      - 'Power! Unlimited power!'
+      - 'Now, young Skywalker, you will die.'
+    chewbacca:
+      - 'RRWWWGG.'
+      - 'GGWWWRGHH.'
+      - 'RAWRGWAWGGR.'
+      - 'RRRAARRWHHGWWR.'
+      - 'AAARARRRGWWWH.'
+    c3p0:
+      - 'I suggest a new strategy, Artoo: let the Wookie win.'
+      - 'R2 says the chances of survival are 725... to one.'
+      - 'We are doomed.'
+      - 'Die Jedi Dogs! Oh what did I say?'
+      - 'R2D2! You know better than to trust a strange computer!'
+    han-solo:
+      - 'Never tell me the odds!'
+      - 'It’s the ship that made the Kessel run in less than twelve parsecs.'
+      - 'Chewie, we’re home.'
+      - 'It is not wise to upset a Wookiee.'
+      - 'You know, sometimes I amaze even myself.'

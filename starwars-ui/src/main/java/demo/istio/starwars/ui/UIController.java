@@ -35,10 +35,10 @@ public class UIController {
     }
 
     private HttpHeaders getForwardHeaders(HttpServletRequest request) {
-        HttpHeaders httpHeaders = new HttpHeaders();
+        var httpHeaders = new HttpHeaders();
         httpHeaders.add(USER_AGENT, request.getHeader(USER_AGENT));
-        for (String traceHeader : TRACE_HEADERS) {
-            String header = request.getHeader(traceHeader);
+        for (var traceHeader : TRACE_HEADERS) {
+            var header = request.getHeader(traceHeader);
             if (header == null || header.isEmpty()) {
                 continue;
             }
