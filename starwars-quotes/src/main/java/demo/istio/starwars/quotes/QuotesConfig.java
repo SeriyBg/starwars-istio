@@ -6,11 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import lombok.Getter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@ConfigurationProperties(prefix = "data")
 public class QuotesConfig {
 
     @Getter
