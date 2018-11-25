@@ -1,4 +1,4 @@
-package demo.istio.starwars.quotes;
+package demo.istio.starwars.deathstar;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,20 +9,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.sun.net.httpserver.HttpServer;
 
-public class Java11Application {
+public class DeathStarApplication {
 
     public static void main(String[] args) throws IOException {
-        var server = HttpServer.create(new InetSocketAddress(8081), 0);
+        var server = HttpServer.create(new InetSocketAddress(8082), 0);
         server.setExecutor(Executors.newCachedThreadPool());
         var yamlObjectMapper = new ObjectMapper(new YAMLFactory());
         var jsonObjectMapper = new ObjectMapper();
 
-        server.createContext("/quote", exchange -> {
-            var classLoader = Java11Application.class.getClassLoader();
-            var file = new File(Objects.requireNonNull(classLoader.getResource("quotes.yaml")).getFile());
-            var quoteConfig = yamlObjectMapper.readValue(file, QuotesConfig.class);
-            var quote = new QuoteService(quoteConfig).randomQuote();
-            var responseBody = jsonObjectMapper.writeValueAsBytes(quote);
+        server.createContext("/destroy", exchange -> {
+            var classLoader = DeathStarApplication.class.getClassLoader();
+            var file = new File(Objects.requireNonNull(classLoader.getResource("planets.yaml")).getFile());
+            var planets = yamlObjectMapper.readValue(file, Planets.class);
+            var planet = new DeathStarService(planets).destroyRandomPlanet();
+            var responseBody = jsonObjectMapper.writeValueAsBytes(planet);
             exchange.sendResponseHeaders(200, responseBody.length);
             exchange.getResponseBody().write(responseBody);
             exchange.getResponseBody().close();

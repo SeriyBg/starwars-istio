@@ -1,0 +1,45 @@
+planets:
+  - name: Alderaan
+    region: Core Worlds
+    sector: Alderaan sector
+    moons: 0
+  - name: Hoth
+    region: Outer Rim Territories
+    sector: Anoat sector
+    moons: 3
+  - name: Bespin
+    region: Outer Rim Territories
+    sector: Anoat sector
+    moons: 2
+  - name: Crait
+    region: Outer Rim Territories
+    sector: Crait sector
+    moons: 0
+  - name: Dagobah
+    region: Outer Rim Territories
+    sector: Sluis sector
+    moons: 0
+  - name: Sibensko
+    region: Expansion Region
+    sector: Sibensko sector
+    moons: 0
+  - name: Cato Neimoidia
+    region: Colonies
+    sectro: Quellor sector
+    moons: 2
+  - name: Bardotta
+    region: Colonies
+    sector: Shasos sector
+    moons: 1
+  - name: Takodana
+    region: Mid Rim
+    sector: Tashtor sector
+    moons: 0
+  - name: Naboo
+    region: Mid Rim
+    sector: Chommell sector
+    moons: 3
+  - name: Mimban
+    region: Expansion Region
+    sector: Circarpous sector
+    moons: 0
