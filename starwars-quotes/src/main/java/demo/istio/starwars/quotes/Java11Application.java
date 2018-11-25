@@ -20,10 +20,9 @@ public class Java11Application {
         server.createContext("/quote", exchange -> {
             var classLoader = Java11Application.class.getClassLoader();
             var file = new File(Objects.requireNonNull(classLoader.getResource("quotes.yaml")).getFile());
-            var quotes = yamlObjectMapper.readValue(file, QuotesConfig.class);
-            var character = quotes.character();
-            var quoteString = quotes.quote(character);
-            var responseBody = jsonObjectMapper.writeValueAsBytes(new Quote(character, quoteString));
+            var quoteConfig = yamlObjectMapper.readValue(file, QuotesConfig.class);
+            var quote = new QuoteService(quoteConfig).randomQuote();
+            var responseBody = jsonObjectMapper.writeValueAsBytes(quote);
             exchange.sendResponseHeaders(200, responseBody.length);
             exchange.getResponseBody().write(responseBody);
             exchange.getResponseBody().close();
