@@ -1,0 +1,9 @@
+<div>
+    <% if(quote !== null){ %>
+        <span class="h2">“<%= quote.quote %>”</span>
+        <span class="h4"> - <%= quote.character %></span>
+    <% } %>
+    <!-- <span class="h2"></span> -->
+    <!-- <span class="h4" th:text="' - ' + ${quote.character}"></span> -->
+    <!--<span th:if="${!#strings.isEmpty(lunarPhase.icon)}" th:utext="${lunarPhase.icon}"></span>-->
+</div>

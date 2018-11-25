@@ -1,0 +1,17 @@
+{
+  "name": "starwars-ui-new",
+  "version": "1.0.0",
+  "description": "Istio Demo Star Wars UI application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "npm": "^6.4.1",
+    "request": "^2.88.0"
+  }
+}
