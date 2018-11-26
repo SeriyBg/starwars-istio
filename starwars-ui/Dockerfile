@@ -9,5 +9,4 @@ COPY . /app/
 
 EXPOSE 3000
 
-RUN ls -la
 CMD node index.js
