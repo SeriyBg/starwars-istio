@@ -16,13 +16,13 @@ public class DeathStarApplication {
         server.setExecutor(Executors.newCachedThreadPool());
         var yamlObjectMapper = new ObjectMapper(new YAMLFactory());
         var jsonObjectMapper = new ObjectMapper();
+        var classLoader = DeathStarApplication.class.getClassLoader();
+        var file = new File(Objects.requireNonNull(classLoader.getResource("planets.yaml")).getFile());
+        var planets = yamlObjectMapper.readValue(file, Planets.class);
+        var deathStar = new DeathStarService(planets);
 
         server.createContext("/destroy", exchange -> {
-            var classLoader = DeathStarApplication.class.getClassLoader();
-            var file = new File(Objects.requireNonNull(classLoader.getResource("planets.yaml")).getFile());
-            var planets = yamlObjectMapper.readValue(file, Planets.class);
-            var planet = new DeathStarService(planets).destroyRandomPlanet();
-            var responseBody = jsonObjectMapper.writeValueAsBytes(planet);
+            var responseBody = jsonObjectMapper.writeValueAsBytes(deathStar.destroyRandomPlanet());
             exchange.sendResponseHeaders(200, responseBody.length);
             exchange.getResponseBody().write(responseBody);
             exchange.getResponseBody().close();

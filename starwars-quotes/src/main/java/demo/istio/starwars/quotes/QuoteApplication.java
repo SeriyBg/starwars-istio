@@ -16,13 +16,13 @@ public class QuoteApplication {
         server.setExecutor(Executors.newCachedThreadPool());
         var yamlObjectMapper = new ObjectMapper(new YAMLFactory());
         var jsonObjectMapper = new ObjectMapper();
+        var classLoader = QuoteApplication.class.getClassLoader();
+        var file = new File(Objects.requireNonNull(classLoader.getResource("quotes.yaml")).getFile());
+        var quoteConfig = yamlObjectMapper.readValue(file, QuotesConfig.class);
+        var quoteService = new QuoteService(quoteConfig);
 
         server.createContext("/quote", exchange -> {
-            var classLoader = QuoteApplication.class.getClassLoader();
-            var file = new File(Objects.requireNonNull(classLoader.getResource("quotes.yaml")).getFile());
-            var quoteConfig = yamlObjectMapper.readValue(file, QuotesConfig.class);
-            var quote = new QuoteService(quoteConfig).randomQuote();
-            var responseBody = jsonObjectMapper.writeValueAsBytes(quote);
+            var responseBody = jsonObjectMapper.writeValueAsBytes(quoteService.randomQuote());
             exchange.sendResponseHeaders(200, responseBody.length);
             exchange.getResponseBody().write(responseBody);
             exchange.getResponseBody().close();

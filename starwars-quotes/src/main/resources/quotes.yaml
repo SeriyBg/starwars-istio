@@ -1,7 +1,7 @@
 characters:
   - "Yoda"
   - "Obi Wan Kenobi"
-  - "Dath Vader"
+  - "Darth Vader"
   - "Palpatine"
   - "Chewbacca"
   - "C-3P0"
@@ -20,7 +20,7 @@ quotes:
     - "Only a Sith deals in absolutes."
     - "Use the Force, Luke."
     - "I felt a great disturbance in the Force, as if millions of voices suddenly cried out in terror, and were suddenly silenced."
-  dath-vader:
+  darth-vader:
     - "I am altering the deal. Pray, I don't alter it any further."
     - "I find your lack of faith disturbing."
     - "Give yourself to the Dark Side."

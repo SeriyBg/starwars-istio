@@ -14,6 +14,7 @@
     <modules>
         <module>starwars-quotes</module>
         <module>starwars-deathstar</module>
+        <module>starwars-images</module>
     </modules>
 
     <properties>
