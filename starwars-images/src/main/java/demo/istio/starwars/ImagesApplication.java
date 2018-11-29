@@ -1,4 +1,4 @@
-package demo.istio;
+package demo.istio.starwars;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -12,12 +12,8 @@ public class ImagesApplication {
         var server = HttpServer.create(new InetSocketAddress(8084), 0);
         server.setExecutor(Executors.newCachedThreadPool());
 
-        server.createContext("/character", exchange -> {
-            handleRequest(exchange, "characters", "png");
-        });
-        server.createContext("/planet", exchange -> {
-            handleRequest(exchange, "planets", "jpg");
-        });
+        server.createContext("/character", exchange -> handleRequest(exchange, "characters", "png"));
+        server.createContext("/planet", exchange -> handleRequest(exchange, "planets", "jpg"));
         server.start();
     }
 

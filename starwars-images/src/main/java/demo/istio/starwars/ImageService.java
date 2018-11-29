@@ -1,6 +1,5 @@
-package demo.istio;
+package demo.istio.starwars;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
@@ -14,7 +13,7 @@ class ImageService {
         this.extension = extension;
     }
 
-    InputStream findImage(String image) throws IOException {
+    InputStream findImage(String image) {
         var classLoader = ClassLoader.getSystemClassLoader();
         var resource = classLoader.getResourceAsStream(imageType + "/" + image + "." + extension);
         if (resource == null) {
