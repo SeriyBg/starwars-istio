@@ -1,9 +1,7 @@
 package demo.istio.starwars.deathstar;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.Objects;
 import java.util.concurrent.Executors;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -17,8 +15,8 @@ public class DeathStarApplication {
         var yamlObjectMapper = new ObjectMapper(new YAMLFactory());
         var jsonObjectMapper = new ObjectMapper();
         var classLoader = DeathStarApplication.class.getClassLoader();
-        var file = new File(Objects.requireNonNull(classLoader.getResource("planets.yaml")).getFile());
-        var planets = yamlObjectMapper.readValue(file, Planets.class);
+        var resource = classLoader.getResourceAsStream("planets.yaml");
+        var planets = yamlObjectMapper.readValue(resource, Planets.class);
         var deathStar = new DeathStarService(planets);
 
         server.createContext("/destroy", exchange -> {

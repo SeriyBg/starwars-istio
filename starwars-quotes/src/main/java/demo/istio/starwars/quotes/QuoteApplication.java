@@ -1,9 +1,7 @@
 package demo.istio.starwars.quotes;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.Objects;
 import java.util.concurrent.Executors;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -16,9 +14,9 @@ public class QuoteApplication {
         server.setExecutor(Executors.newCachedThreadPool());
         var yamlObjectMapper = new ObjectMapper(new YAMLFactory());
         var jsonObjectMapper = new ObjectMapper();
-        var classLoader = QuoteApplication.class.getClassLoader();
-        var file = new File(Objects.requireNonNull(classLoader.getResource("quotes.yaml")).getFile());
-        var quoteConfig = yamlObjectMapper.readValue(file, QuotesConfig.class);
+        var classLoader = ClassLoader.getSystemClassLoader();
+        var resource = classLoader.getResourceAsStream("quotes.yaml");
+        var quoteConfig = yamlObjectMapper.readValue(resource, QuotesConfig.class);
         var quoteService = new QuoteService(quoteConfig);
 
         server.createContext("/quote", exchange -> {
