@@ -2,7 +2,6 @@ package demo.istio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.file.Files;
 import java.util.concurrent.Executors;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
@@ -27,12 +26,8 @@ public class ImagesApplication {
         var split = url.split("/");
         var character = split[split.length - 1];
         var image = new ImageService(requestPath, extension).findImage(character);
-        if (image != null) {
-            exchange.sendResponseHeaders(200, image.length());
-            Files.copy(image.toPath(), exchange.getResponseBody());
-        } else {
-            exchange.sendResponseHeaders(200, 0);
-        }
+        exchange.sendResponseHeaders(200, 0);
+        image.transferTo(exchange.getResponseBody());
         exchange.getResponseBody().close();
     }
 }

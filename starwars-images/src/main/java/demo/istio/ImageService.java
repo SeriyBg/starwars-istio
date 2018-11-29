@@ -1,23 +1,25 @@
 package demo.istio;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
-public class ImageService {
+class ImageService {
 
     private final String imageType;
     private final String extension;
 
-    public ImageService(String imageType, String extension) {
+    ImageService(String imageType, String extension) {
         this.imageType = imageType;
         this.extension = extension;
     }
 
-    public File findImage(String image) {
-        var classLoader = ImageService.class.getClassLoader();
-        var resource = classLoader.getResource(imageType + "/" + image + "." + extension);
+    InputStream findImage(String image) throws IOException {
+        var classLoader = ClassLoader.getSystemClassLoader();
+        var resource = classLoader.getResourceAsStream(imageType + "/" + image + "." + extension);
         if (resource == null) {
-            return new File("default." + extension);
+            resource = classLoader.getResourceAsStream("default." + extension);
         }
-        return new File(resource.getPath());
+        return Objects.requireNonNull(resource);
     }
 }
