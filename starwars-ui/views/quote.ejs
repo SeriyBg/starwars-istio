@@ -1,8 +1,12 @@
 <div>
     <% if(quote !== null){ %>
+        <% if(quote.image !== null && typeof yourvar !== 'undefined'){ %>
+            <img class="character-img" src=<%= quote.image %> />
+        <% } %>
         <span class="h2">“<%= quote.quote %>”</span>
         <span class="h4"> - <%= quote.character %></span>
-        <!--<span th:if="${!#strings.isEmpty(lunarPhase.icon)}" th:utext="${lunarPhase.icon}"></span>-->
+        <span></span>
+        <span th:if="${!#strings.isEmpty(lunarPhase.icon)}" th:utext="${lunarPhase.icon}"></span>
     <% } %>
     <% if (error !== null){ %>
         <div class="alert alert-danger" role="aler"><%= error %></div>
