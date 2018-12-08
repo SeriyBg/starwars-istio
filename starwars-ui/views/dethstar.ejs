@@ -2,6 +2,10 @@
     <span class="h3">Death star destroyed a new planet</span><br/>
     <div class="death-star-container">
         <% if(planet !== null){ %>
+            <% if(planet.image !== null && typeof planet.image !== 'undefined'){ %>
+                <% var img = "data:image/jpeg;base64,"+planet.image %>
+                <img class="planet-img" src=<%= img %> />
+            <% } %>
             <div>
                 <p><span class="h2">Name: <%= planet.name %></span></p>
                 <p><span class="h4">Region: <%= planet.region %></span></p>

@@ -19,6 +19,8 @@ public class QuoteService {
     public Quote randomQuote() {
         var character = quotesConfig.character();
         var quote = quotesConfig.quote(character);
+        Quote result = new Quote(character, quote);
+
         String imageServiceEndpoint = System.getenv().getOrDefault("IMAGE_SERVICE", "http://localhost:8084");
         HttpRequest.Builder httpRequest = HttpRequest.newBuilder(URI.create(imageServiceEndpoint + "/character/" + character))
                 .GET()
@@ -26,7 +28,6 @@ public class QuoteService {
                 .setHeader("User-Agent", "Java/9");
         HttpClient httpClient = HttpClient.newHttpClient();
 
-        Quote result = new Quote(character, quote);
         try {
             HttpResponse<byte[]> response = httpClient.send(httpRequest.build(), HttpResponse.BodyHandlers.ofByteArray());
             String imgBase64 = Base64.getEncoder().encodeToString(response.body());

@@ -30,6 +30,11 @@ svg {
     border-radius: 50%;
 }
 
+.planet-img{
+    width: 100px;
+    height: 100px;
+}
+
 .quote-container{
     text-align: center;
 }

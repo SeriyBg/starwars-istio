@@ -1,18 +1,21 @@
 package demo.istio.starwars.deathstar;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 @ToString
 public class Planet {
-    private String name;
-    private String region;
-    private String sector;
-    private int moons;
+    @NonNull private String name;
+    @NonNull private String region;
+    @NonNull private String sector;
+    @NonNull private int moons;
+
+    private String image;
 }
