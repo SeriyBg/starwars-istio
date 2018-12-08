@@ -1,11 +1,14 @@
 package demo.istio.starwars.quotes;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 public class Quote {
-    private String character;
-    private String quote;
+    private final String character;
+    private final String quote;
+    @Setter
+    private String image;
 }
