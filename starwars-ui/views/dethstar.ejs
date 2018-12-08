@@ -1,12 +1,16 @@
 <div>
-    <% if(planet !== null){ %>
-        <p><span class="h2">Name: <%= planet.name %></span></p>
-        <p><span class="h4">Region: <%= planet.region %></span></p>
-        <p><span class="h4">Sector: <%= planet.sector %></span></p>
-        <p><span class="h4">Moons: <%= planet.moons %></span></p>
-        <!--<span th:if="${!#strings.isEmpty(lunarPhase.icon)}" th:utext="${lunarPhase.icon}"></span>-->
-    <% } %>
-    <% if (error !== null){ %>
-        <div class="alert alert-danger" role="aler"><%= error %></div>
-    <% } %>
+    <span class="h3">Death star destroyed a new planet</span><br/>
+    <div class="death-star-container">
+        <% if(planet !== null){ %>
+            <div>
+                <p><span class="h2">Name: <%= planet.name %></span></p>
+                <p><span class="h4">Region: <%= planet.region %></span></p>
+                <p><span class="h4">Sector: <%= planet.sector %></span></p>
+                <p><span class="h4">Moons: <%= planet.moons %></span></p>
+            </div>
+        <% } %>
+        <% if (error !== null){ %>
+            <div class="alert alert-danger" role="aler"><%= error %></div>
+        <% } %>
+    </div>
 </div>
