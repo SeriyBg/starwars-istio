@@ -25,7 +25,7 @@ planets:
     moons: 0
   - name: Cato Neimoidia
     region: Colonies
-    sectro: Quellor sector
+    sector: Quellor sector
     moons: 2
   - name: Bardotta
     region: Colonies
