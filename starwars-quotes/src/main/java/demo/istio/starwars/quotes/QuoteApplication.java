@@ -25,12 +25,6 @@ public class QuoteApplication {
             exchange.getResponseBody().write(responseBody);
             exchange.getResponseBody().close();
         });
-        server.createContext("/quote/img", exchange -> {
-            var responseBody = quoteService.randomQuote();
-            exchange.sendResponseHeaders(200, responseBody.getImage().length());
-            exchange.getResponseBody().write(responseBody.getImage().getBytes());
-            exchange.getResponseBody().close();
-        });
         server.start();
     }
 }
