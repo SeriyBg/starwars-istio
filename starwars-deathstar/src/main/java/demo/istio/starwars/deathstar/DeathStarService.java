@@ -24,7 +24,8 @@ public class DeathStarService {
 
         String imageServiceEndpoint = System.getenv().getOrDefault("IMAGE_SERVICE_URL", "http://localhost:8084");
         logger.log(System.Logger.Level.INFO, "Request for planet image to endpoint: " + imageServiceEndpoint);
-        HttpRequest.Builder httpRequest = HttpRequest.newBuilder(URI.create(imageServiceEndpoint + "/planet/" + planet.getName().toLowerCase()))
+        var plannetNameFormatted = planet.getName().toLowerCase().replaceAll(" ", "-");
+        HttpRequest.Builder httpRequest = HttpRequest.newBuilder(URI.create(imageServiceEndpoint + "/planet/" + plannetNameFormatted))
                 .GET()
                 .version(HttpClient.Version.HTTP_1_1)
                 .setHeader("User-Agent", "Java/9");
