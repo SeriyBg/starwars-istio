@@ -207,7 +207,7 @@ spec:
         serving: "true"
     spec:
       containers:
-        - name: death-star-service
+        - name: image-service
           image: sbishyr/starwars-images:1.0
           imagePullPolicy: Always
           ports:
