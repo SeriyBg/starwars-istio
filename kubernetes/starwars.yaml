@@ -98,7 +98,7 @@ spec:
             - containerPort: 8081
               name: http
           env:
-            - name: IMAGE_SERVICE
+            - name: IMAGE_SERVICE_URL
               value: http://image-service:8084
 ---
 apiVersion: v1
@@ -168,7 +168,7 @@ spec:
             - containerPort: 8082
               name: http
           env:
-            - name: IMAGE_SERVICE
+            - name: IMAGE_SERVICE_URL
               value: http://image-service:8084
 ---
 apiVersion: v1

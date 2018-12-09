@@ -22,8 +22,9 @@ public class DeathStarService {
         var planets = this.planets.getPlanets();
         Planet planet = planets.get(new Random(System.currentTimeMillis()).nextInt(planets.size()));
 
-        String imageServiceEndpoint = System.getenv().getOrDefault("IMAGE_SERVICE", "http://localhost:8084");
-        HttpRequest.Builder httpRequest = HttpRequest.newBuilder(URI.create(imageServiceEndpoint + "/planet/" + planet.getName()))
+        String imageServiceEndpoint = System.getenv().getOrDefault("IMAGE_SERVICE_URL", "http://localhost:8084");
+        logger.log(System.Logger.Level.INFO, "Request for planet image to endpoint: " + imageServiceEndpoint);
+        HttpRequest.Builder httpRequest = HttpRequest.newBuilder(URI.create(imageServiceEndpoint + "/planet/" + planet.getName().toLowerCase()))
                 .GET()
                 .version(HttpClient.Version.HTTP_1_1)
                 .setHeader("User-Agent", "Java/9");

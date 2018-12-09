@@ -8,6 +8,8 @@ import com.sun.net.httpserver.HttpServer;
 
 public class ImagesApplication {
 
+    private static final System.Logger logger = System.getLogger(ImagesApplication.class.getName());
+
     public static void main(String[] args) throws IOException {
         var server = HttpServer.create(new InetSocketAddress(8084), 0);
         server.setExecutor(Executors.newCachedThreadPool());
@@ -18,6 +20,7 @@ public class ImagesApplication {
     }
 
     private static void handleRequest(HttpExchange exchange, String requestPath, String extension) throws IOException {
+        logger.log(System.Logger.Level.INFO, "Receiving request for image with path " + requestPath);
         var url = exchange.getRequestURI().toString();
         var split = url.split("/");
         var character = split[split.length - 1];

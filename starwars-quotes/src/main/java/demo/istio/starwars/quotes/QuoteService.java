@@ -21,8 +21,10 @@ public class QuoteService {
         var quote = quotesConfig.quote(character);
         Quote result = new Quote(character, quote);
 
-        String imageServiceEndpoint = System.getenv().getOrDefault("IMAGE_SERVICE", "http://localhost:8084");
-        HttpRequest.Builder httpRequest = HttpRequest.newBuilder(URI.create(imageServiceEndpoint + "/character/" + character))
+        var characterFormatted = character.toLowerCase().replaceAll(" ", "-");
+        String imageServiceEndpoint = System.getenv().getOrDefault("IMAGE_SERVICE_URL", "http://localhost:8084");
+        logger.log(System.Logger.Level.INFO, "Request for character image to endpoint " + imageServiceEndpoint + " for character " + characterFormatted);
+        HttpRequest.Builder httpRequest = HttpRequest.newBuilder(URI.create(imageServiceEndpoint + "/character/" + characterFormatted))
                 .GET()
                 .version(HttpClient.Version.HTTP_1_1)
                 .setHeader("User-Agent", "Java/9");
@@ -30,6 +32,7 @@ public class QuoteService {
 
         try {
             HttpResponse<byte[]> response = httpClient.send(httpRequest.build(), HttpResponse.BodyHandlers.ofByteArray());
+            logger.log(System.Logger.Level.INFO, "Received response with status code " + response.statusCode());
             String imgBase64 = Base64.getEncoder().encodeToString(response.body());
             result.setImage(imgBase64);
         } catch (IOException | InterruptedException e) {
