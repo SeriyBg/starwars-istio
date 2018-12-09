@@ -2,7 +2,7 @@
     <span class="h3">Quote of the day</span><br/>
     <div class="quote-container">
         <% if(quote !== null){ %>
-            <% if(quote.image !== null && typeof quote.image !== 'undefined'){ %>
+            <% if(typeof quote.image !== 'undefined'){ %>
                 <% var img = "data:image/png;base64,"+quote.image %>
                 <img class="character-img" src=<%= img %> />
             <% } %>
