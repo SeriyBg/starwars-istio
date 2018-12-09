@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>starwars-deathstar</name>
-	<description>Death Start that destorys random planet</description>
+	<description>Death Start that destroys random planet</description>
 
 	<parent>
 		<groupId>demo.istio</groupId>
