@@ -20,7 +20,7 @@ public class DeathStarApplication {
         var deathStar = new DeathStarService(planets);
 
         server.createContext("/destroy", exchange -> {
-            var responseBody = jsonObjectMapper.writeValueAsBytes(deathStar.destroyRandomPlanet());
+            var responseBody = jsonObjectMapper.writeValueAsBytes(deathStar.destroyRandomPlanet(exchange.getRequestHeaders()));
             exchange.sendResponseHeaders(200, responseBody.length);
             exchange.getResponseBody().write(responseBody);
             exchange.getResponseBody().close();

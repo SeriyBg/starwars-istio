@@ -47,7 +47,7 @@ app.get('/dethstar', function(req, res) {
     console.log("Requesting death star to destriy a new planet...");
     var deathStarServiceUrl = process.env.DEATH_STAR_SERVICE_URL || "http://localhost:8082"
     var options = createOptions(deathStarServiceUrl + "/destroy", req);
-    request(options + "/destroy", function(err, response, body) {
+    request(options, function(err, response, body) {
         if (err) {
             res.render("dethstar", {planet: null, error: err})
             return;

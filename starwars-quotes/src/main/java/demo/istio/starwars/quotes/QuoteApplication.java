@@ -20,7 +20,7 @@ public class QuoteApplication {
         var quoteService = new QuoteService(quoteConfig);
 
         server.createContext("/quote", exchange -> {
-            var responseBody = jsonObjectMapper.writeValueAsBytes(quoteService.randomQuote());
+            var responseBody = jsonObjectMapper.writeValueAsBytes(quoteService.randomQuote(exchange.getRequestHeaders()));
             exchange.sendResponseHeaders(200, responseBody.length);
             exchange.getResponseBody().write(responseBody);
             exchange.getResponseBody().close();
