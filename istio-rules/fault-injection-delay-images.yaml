@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: image-delay
+spec:
+  hosts:
+  - image-service
+  http:
+  - fault:
+      delay:
+        fixedDelay: 7s
+        percent: 100
+    route:
+    - destination:
+        host: image-service
