@@ -12,6 +12,7 @@ app.get('/', function (req, res) {
 
 app.get('/quote', function(req, res) {
     quoteServiceUrl = process.env.QUOTE_SERVICE_URL || "http://localhost:8081"
+    console.log("Requesting a character for a quote...");
     request(quoteServiceUrl + "/quote", function(err, response, body) {
         if (err) {
             res.render("quote", {quote: null, error: err})
@@ -27,6 +28,7 @@ app.get('/quote', function(req, res) {
 
 app.get('/dethstar', function(req, res) {
     deathStarServiceUrl = process.env.DEATH_STAR_SERVICE_URL || "http://localhost:8082"
+    console.log("Requesting death star to destriy a new planet...");
     request(deathStarServiceUrl + "/destroy", function(err, response, body) {
         if (err) {
             res.render("dethstar", {planet: null, error: err})
