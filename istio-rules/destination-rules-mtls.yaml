@@ -1,0 +1,65 @@
+# UI service
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: ui-service
+spec:
+  host: ui-service
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      serving: "true"
+---
+# Quote service
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: quote-service
+spec:
+  host: quote-service
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      version: "1.0"
+  - name: v2
+    labels:
+      version: "2.0"
+---
+# Death Star service
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: death-star-service
+spec:
+  host: death-star-service
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      version: "1.0"
+  - name: v2
+    labels:
+      version: "2.0"
+---
+# Image service
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: image-service
+spec:
+  host: image-service
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      serving: "true"
