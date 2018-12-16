@@ -13,12 +13,12 @@ spec:
     metadata:
       labels:
         app: ui-service
-        version: "1.0"
+        version: "2.2"
         serving: "true"
     spec:
       containers:
         - name: ui-service
-          image: sbishyr/starwars-ui:1.0
+          image: sbishyr/starwars-ui:2.2
           imagePullPolicy: Always
           env:
             - name: QUOTE_SERVICE_URL
@@ -45,7 +45,7 @@ spec:
   selector:
     app: ui-service
     serving: "true"
-    version: "1.0"
+    version: "2.2"
 ---
 ##################################################################################################
 # Quote service
