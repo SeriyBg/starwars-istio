@@ -19,6 +19,14 @@ function createOptions(url, req) {
     return options
 }
 
+function tryParseJSON(body) {
+    try {
+        return JSON.parse(body)
+    } catch(err) {
+        return null
+    }
+}
+
 app.use(express.static('public'));
 app.set('view engine', 'ejs')
 
@@ -39,7 +47,13 @@ app.get('/quote', function(req, res) {
             res.render("quote", {quote: null, error: "Unable to parse response"})
             return;
         }
-        res.render("quote", {quote: JSON.parse(response.body), error: null})
+        console.log("Response: " + response.statusCode)
+        var responseBody = tryParseJSON(response.body)
+        if (responseBody != null) {
+            res.render("quote", {quote: responseBody, error: null})
+        } else {
+            res.render("quote", {quote: null, error: response.body})
+        }
     })
 })
 
@@ -56,7 +70,13 @@ app.get('/dethstar', function(req, res) {
             res.render("dethstar", {planet: null, error: "Unable to parse response"})
             return;
         }
-        res.render("dethstar", {planet: JSON.parse(response.body), error: null})
+        console.log("Response: " + response.statusCode)
+        var responseBody = tryParseJSON(response.body)
+        if (responseBody != null) {
+            res.render("dethstar", {planet: responseBody, error: null})
+        } else {
+            res.render("dethstar", {planet: null, error: response.body})
+        }
     })
 })
 
