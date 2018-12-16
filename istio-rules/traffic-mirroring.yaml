@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: quote-mirroring
+spec:
+  hosts:
+    - quote-service
+  http:
+    - route:
+      - destination:
+          host: quote-service
+          subset: v1
+        weight: 100
+      mirror:
+        host: quote-service
+        subset: v2
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: death-star-mirroring
+spec:
+  hosts:
+    - death-star-service
+  http:
+    - route:
+      - destination:
+          host: death-star-service
+          subset: v1
+        weight: 100
+      mirror:
+        host: death-star-service
+        subset: v2
