@@ -1,5 +1,5 @@
 <div>
-    <span class="h3">Death star destroyed a new planet</span><br/>
+    <span class="h4">Death star destroyed a new planet</span><br/>
     <div class="death-star-container">
         <% if(planet !== null){ %>
             <% if(typeof planet.image !== 'undefined'){ %>
@@ -7,10 +7,10 @@
                 <img class="planet-img" src=<%= img %> />
             <% } %>
             <div>
-                <p><span class="h2">Name: <%= planet.name %></span></p>
-                <p><span class="h4">Region: <%= planet.region %></span></p>
-                <p><span class="h4">Sector: <%= planet.sector %></span></p>
-                <p><span class="h4">Moons: <%= planet.moons %></span></p>
+                <p><span class="h3">Name: <%= planet.name %></span></p>
+                <p><span class="h5">Region: <%= planet.region %></span></p>
+                <p><span class="h5">Sector: <%= planet.sector %></span></p>
+                <p><span class="h5">Moons: <%= planet.moons %></span></p>
             </div>
         <% } %>
         <% if (error !== null){ %>

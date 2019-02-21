@@ -1,5 +1,5 @@
 <div>
-    <span class="h3">Quote of the day</span><br/>
+    <span class="h4">Quote of the day</span><br/>
     <div class="quote-container">
         <% if(quote !== null){ %>
             <% if(typeof quote.image !== 'undefined'){ %>
@@ -7,8 +7,8 @@
                 <img class="character-img" src=<%= img %> />
             <% } %>
             <div class="content">
-                <span class="h2">“<%= quote.quote %>”</span>
-                <span class="h4"> - <%= quote.character %></span>
+                <span class="h3">“<%= quote.quote %>”</span>
+                <span class="h5"> - <%= quote.character %></span>
             </div>
         <% } %>
         <% if (error !== null){ %>

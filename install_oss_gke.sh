@@ -24,5 +24,8 @@ kubectl apply -f <(istioctl kube-inject -f ${STAR_WARS_PROJECT_HOME}kubernetes/s
 
 # Istio gateway
 kubectl apply -f ${STAR_WARS_PROJECT_HOME}istio-rules/starwars-gateway.yaml;
+
+# wait for a wile so the istiogateway is started
+sleep 60;
 export GATEWAY_URL=$(kubectl -n istio-system get svc istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}');
 echo "Gateway URL: ${GATEWAY_URL}";
