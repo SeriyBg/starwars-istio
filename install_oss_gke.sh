@@ -6,6 +6,7 @@ PROJECT_ID=${GKE_PORJECT_ID};
 gcloud container clusters create istio-demo --project=${PROJECT_ID} \
     --machine-type=n1-standard-2 \
     --num-nodes=2 \
+    --zone europe-west1-b \
     --no-enable-legacy-authorization;
 
 # add permissions to the GKE user
