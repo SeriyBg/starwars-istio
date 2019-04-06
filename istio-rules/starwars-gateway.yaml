@@ -11,7 +11,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "demo.javadayistio.com"
+    - "*.istiodemo.xyz"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -19,7 +19,7 @@ metadata:
   name: ui-service
 spec:
   hosts:
-  - "demo.javadayistio.com"
+  - "*.istiodemo.xyz"
   gateways:
   - star-wars-gateway
   http:
