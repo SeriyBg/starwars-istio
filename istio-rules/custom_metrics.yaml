@@ -1,0 +1,42 @@
+# Configuration for metric instances
+apiVersion: "config.istio.io/v1alpha2"
+kind: metric
+metadata:
+  name: androidrequestcount
+  namespace: istio-system
+spec:
+  value: "1" # add 1 for each request
+  dimensions:
+    source: source.workload.name | "unknown"
+    destination: destination.workload.name | "unknown"
+    message: '"Hello from JeeConf"'
+  monitored_resource_type: '"UNSPECIFIED"'
+---
+# Configuration for a Prometheus handler
+apiVersion: "config.istio.io/v1alpha2"
+kind: prometheus
+metadata:
+  name: androidhandler
+  namespace: istio-system
+spec:
+  metrics:
+    - name: android_request_count # Prometheus metric name
+      instance_name: androidrequestcount.metric.istio-system # Mixer instance name (fully-qualified)
+      kind: COUNTER
+      label_names:
+        - source
+        - destination
+        - message
+---
+# Rule to send metric instances to a Prometheus handler
+apiVersion: "config.istio.io/v1alpha2"
+kind: rule
+metadata:
+  name: androidprom
+  namespace: istio-system
+spec:
+  match: '".*Android.*".matches(request.headers["user-agent"]) && context.reporter.kind == "inbound"' # match only for the android users
+  actions:
+    - handler: androidhandler.prometheus
+      instances:
+        - androidrequestcount.metric
