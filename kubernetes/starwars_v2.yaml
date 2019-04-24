@@ -1,0 +1,102 @@
+##################################################################################################
+# Quote service
+##################################################################################################
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: quote-service-v2
+  labels:
+    app: quote-service
+    version: "2.0"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: quote-service
+        version: "2.0"
+        serving: "true"
+    spec:
+      containers:
+        - name: quote-service
+          image: sbishyr/starwars-quotes:2.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+              name: http
+          env:
+            - name: IMAGE_SERVICE_URL
+              value: http://image-service:8084
+---
+##################################################################################################
+# Death Star service
+##################################################################################################
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: death-star-service-v2
+  labels:
+    app: death-star-service
+    version: "2.0"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: death-star-service
+        version: "2.0"
+        serving: "true"
+    spec:
+      containers:
+        - name: death-star-service
+          image: sbishyr/starwars-deathstar:2.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+              name: http
+          env:
+            - name: IMAGE_SERVICE_URL
+              value: http://image-service:8084
+---
+##################################################################################################
+# Image service
+##################################################################################################
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: image-service
+  labels:
+    app: image-service
+    version: "1.0"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: image-service
+        version: "1.0"
+        serving: "true"
+    spec:
+      containers:
+        - name: image-service
+          image: sbishyr/starwars-images:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8084
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-service
+  labels:
+    app: image-service
+spec:
+  ports:
+    - port: 8084
+      targetPort: 8084
+      protocol: TCP
+      name: http
+  selector:
+    app: image-service
+    serving: "true"

@@ -1,0 +1,134 @@
+##################################################################################################
+# UI service
+##################################################################################################
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ui-service
+  labels:
+    app: ui-service
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ui-service
+        version: "2.2"
+        serving: "true"
+    spec:
+      containers:
+        - name: ui-service
+          image: sbishyr/starwars-ui:2.2
+          imagePullPolicy: Always
+          env:
+            - name: QUOTE_SERVICE_URL
+              value: http://quote-service:8081
+            - name: DEATH_STAR_SERVICE_URL
+              value: http://death-star-service:8082
+          ports:
+            - containerPort: 3000
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-service
+  labels:
+    app: ui-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: http
+  selector:
+    app: ui-service
+    serving: "true"
+    version: "2.2"
+---
+##################################################################################################
+# Quote service
+##################################################################################################
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: quote-service-v1
+  labels:
+    app: quote-service
+    version: "1.0"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: quote-service
+        version: "1.0"
+        serving: "true"
+    spec:
+      containers:
+        - name: quote-service
+          image: sbishyr/starwars-quotes:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quote-service
+  labels:
+    app: quote-service
+spec:
+  ports:
+    - port: 8081
+      targetPort: 8081
+      protocol: TCP
+      name: http
+  selector:
+    app: quote-service
+    serving: "true"
+---
+##################################################################################################
+# Death Star service
+##################################################################################################
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: death-star-service-v1
+  labels:
+    app: death-star-service
+    version: "1.0"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: death-star-service
+        version: "1.0"
+        serving: "true"
+    spec:
+      containers:
+        - name: death-star-service
+          image: sbishyr/starwars-deathstar:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: death-star-service
+  labels:
+    app: death-star-service
+spec:
+  ports:
+    - port: 8082
+      targetPort: 8082
+      protocol: TCP
+      name: http
+  selector:
+    app: death-star-service
+    serving: "true"
