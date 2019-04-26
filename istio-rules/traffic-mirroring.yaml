@@ -10,7 +10,6 @@ spec:
       - destination:
           host: quote-service
           subset: v1
-        weight: 100
       mirror:
         host: quote-service
         subset: v2
@@ -27,7 +26,6 @@ spec:
       - destination:
           host: death-star-service
           subset: v1
-        weight: 100
       mirror:
         host: death-star-service
         subset: v2
