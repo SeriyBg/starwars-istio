@@ -2,21 +2,20 @@ const express = require('express')
 const request = require('request')
 const app = express()
 const PORT = 3000
-const FORWARD_HEADERS = ['user-agent', 'x-request-id', 'x-b3-traceid', 'x-b3-spanid', 'x-b3-parentspanid', 'x-b3-sampled', 'x-b3-flags', 'x-ot-span-context']
+const FORWARD_HEADERS = ['user-agent', 'x-request-id', 'x-b3-traceid', 'x-b3-spanid', 'x-b3-parentspanid', 'x-b3-sampled', 'x-b3-flags', 'x-ot-span-context', 'x-debug']
 
 function createOptions(url, req) {
-    var headers = {}
+    var headers = {};
     FORWARD_HEADERS.forEach(function(header) {
         var hVal = req.headers[header];
         if (hVal != null) {
             headers[header] = req.headers[header]
         }
-    })
-    var options = {
+    });
+    return {
         url: url,
         headers: headers
     }
-    return options
 }
 
 function tryParseJSON(body) {
@@ -28,11 +27,11 @@ function tryParseJSON(body) {
 }
 
 app.use(express.static('public'));
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {  
   res.render('index')
-})
+});
 
 app.get('/quote', function(req, res) {
     console.log("Requesting a character for a quote...");
@@ -55,7 +54,7 @@ app.get('/quote', function(req, res) {
             res.render("quote", {quote: null, error: response.body})
         }
     })
-})
+});
 
 app.get('/dethstar', function(req, res) {
     console.log("Requesting death star to destriy a new planet...");
@@ -78,8 +77,8 @@ app.get('/dethstar', function(req, res) {
             res.render("dethstar", {planet: null, error: response.body})
         }
     })
-})
+});
 
 app.listen(PORT, function () {
   console.log('Serving on port 3000...')
-})
+});
