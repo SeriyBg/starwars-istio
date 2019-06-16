@@ -9,7 +9,7 @@ spec:
   dimensions:
     source: source.workload.name | "unknown"
     destination: destination.workload.name | "unknown"
-    message: '"Hello from JeeConf"'
+    message: '"Hello Rockstar Night"'
   monitored_resource_type: '"UNSPECIFIED"'
 ---
 # Configuration for a Prometheus handler
